@@ -1,0 +1,31 @@
+<!-- src/app/components/chat/chat.component.html -->
+
+<div class="chat-container" *ngIf="!joined">
+  <h2>Join Chat</h2>
+  <input type="text" [(ngModel)]="username" placeholder="Enter your name" />
+  <input type="text" [(ngModel)]="room" placeholder="Enter room name" />
+  <button (click)="joinRoom()">Join Room</button>
+</div>
+
+<div class="chat-room" *ngIf="joined">
+  <h2>Room: {{ room }}</h2>
+  <div class="chat-box">
+    <div *ngFor="let msg of messages">
+      <strong>{{ msg.username }}</strong
+      >: {{ msg.message }} <span>{{ msg.time }}</span>
+    </div>
+    <div *ngIf="typingStatuses.length">
+      <strong>{{ typingStatuses.join(", ") + " is typing" }}</strong>
+    </div>
+  </div>
+
+  <input
+    type="text"
+    [(ngModel)]="message"
+    placeholder="Type a message..."
+    (input)="sendTypingStatus()"
+    (blur)="stopTyping()"
+  />
+  <button (click)="sendMessage()">Send</button>
+  <button (click)="leaveRoom()">Leave Room</button>
+</div>
