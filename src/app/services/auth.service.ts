@@ -18,6 +18,10 @@ export class AuthService {
     return this.username;
   }
 
+  setUsername(username: string) {
+    this.username = username;
+  }
+
   setJWT(data: string) {
     localStorage.setItem('auth-token', data);
   }

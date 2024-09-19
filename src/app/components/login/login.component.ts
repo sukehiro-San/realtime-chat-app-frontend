@@ -1,6 +1,7 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,6 +10,7 @@ import { Subscription } from 'rxjs';
 })
 export class LoginComponent implements OnInit, OnDestroy {
   private authService = inject(AuthService);
+  private router = inject(Router);
   private LoginSub!: Subscription;
 
   public email!: string;
@@ -22,7 +24,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.LoginSub = this.authService
       .login({ email: this.email, password: this.password })
       .subscribe((res) => {
-        console.log(res);
+        this.authService.setJWT(res?.token);
+        this.router.navigate(['/chat']);
       });
   }
 

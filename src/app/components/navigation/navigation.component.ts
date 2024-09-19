@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-navigation',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './navigation.component.scss'
 })
 export class NavigationComponent {
-
+  public auth = inject(AuthService);
 }
