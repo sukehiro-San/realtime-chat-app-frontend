@@ -1,1 +1,27 @@
-<p>login works!</p>
+<div class="login-container">
+  <div class="login-box">
+    <form (ngSubmit)="login($event)">
+      <p class="title-text">Login Form</p>
+      <div class="form-field">
+        <input
+          type="text"
+          name="email"
+          [(ngModel)]="email"
+          placeholder="Enter email..."
+        />
+      </div>
+      <div class="form-field">
+        <input
+          type="password"
+          name="password"
+          [(ngModel)]="password"
+          placeholder="Enter password..."
+        />
+      </div>
+      <div class="button-div">
+        <button type="submit">Login</button>
+        <button type="reset">Reset</button>
+      </div>
+    </form>
+  </div>
+</div>
